@@ -1,26 +1,19 @@
-class Account {
-    constructor(accountNumber, balance) {
-        this.accountNumber = accountNumber;
-        this.balance = balance;
+class Bank {
+    constructor() {
+        this.accounts = [];
     }
 
-    deposit(amount) {
-        this.balance += amount;
+    createAccount(accountNumber, initialDeposit) {
+        let account = new Account(accountNumber, initialDeposit);
+        this.accounts.push(account);
     }
 
-    withdraw(amount) {
-        if (amount > this.balance) {
-            console.log('Insufficient balance');
-            return;
+    findAccount(accountNumber) {
+        for (let account of this.accounts) {
+            if (account.accountNumber === accountNumber) {
+                return account;
+            }
         }
-        this.balance -= amount;
-    }
-
-    calculateInterest(rate) {
-        return this.balance * rate / 100;
-    }
-
-    display() {
-        console.log(`Account Number: ${this.accountNumber}, Balance: ${this.balance}`);
+        return null;
     }
 }
